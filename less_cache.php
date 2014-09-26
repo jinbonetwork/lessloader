@@ -1,7 +1,8 @@
 <?php
-function lessloader($base_path = "", $items = "", $lessc_path = "", $cache_path = "", $output_path = ""){
+function lessloader($params){
+	extract($params);	
 	/*
-	 * lessc runner
+	 * lessc loader
 	 *
 	 * required
 	 *   $items = array();
@@ -18,8 +19,8 @@ function lessloader($base_path = "", $items = "", $lessc_path = "", $cache_path 
 
 		$base_path = isset($base_path)&&file_exists($base_path)?$base_path:dirname(__FILE__);
 		$lessc_path = class_exists('lessc')||isset($lessc_path)&&file_exists($lessc_path)?$lessc_path:dirname(__FILE__).'/lessphp/lessc.inc.php';
-		$cache_path = isset($cache_path)&&file_exists($cache_path)?$cache_path:$base_path."/cache/style.cache.less";
-		$output_path = isset($output_path)&&file_exists($output_path)?$output_path:$base_path."/cache/style.cache.css";
+		$cache_path = isset($cache_path)&&file_exists($cache_path)?$cache_path:$base_path."/cache/style.cache".$id.".less";
+		$output_path = isset($output_path)&&file_exists($output_path)?$output_path:$base_path."/cache/style.cache".$id.".css";
 	
 		$cache_location = explode('/',$cache_path);
 		$cache_file = end($cache_location);
@@ -50,7 +51,7 @@ function lessloader($base_path = "", $items = "", $lessc_path = "", $cache_path 
 				endif;
 				$item_status = $item_mtime.' -> '.$item_check;
 			else:
-				$item_status = 'not found:'. $item_path;
+				$item_status = 'not found:';
 			endif;
 			$item_location = explode('/',$item_path);
 			$item_file = end($item_location);
