@@ -1,3 +1,4 @@
+cache/*.*
 config.php
 .*.swp
 .DS_Store
