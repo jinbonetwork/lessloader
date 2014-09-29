@@ -1,13 +1,13 @@
 <?php
 require_once "less_cache.php";
-require_once "config.php";
 
 extract($_GET);
 
 $files = explode(',', $files);
 $index = 0;
+$baseDir = str_replace($_SERVER['PHP_SELF'], "", __FILE__);
 foreach($files as $file):
-	$files[$index] = BASE_DIR ."/". trim($file);
+	$files[$index] = $baseDir ."/". trim($file);
 	$index++;
 endforeach;
 
