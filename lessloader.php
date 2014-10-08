@@ -11,8 +11,10 @@ foreach($files as $file):
 	$index++;
 endforeach;
 
-if($id):
-	 $id = ".". $id;
+if(isset($id) && $id):
+	$id = ".". $id;
+else:
+	$id = "";
 endif;
 
 if(isset($cache) && $cache == "true"):
